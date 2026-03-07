@@ -1,0 +1,69 @@
+[package]
+name = "aitrans"
+version = "0.1.0"
+description = "AI-powered real-time translation overlay"
+authors = ["you"]
+edition = "2021"
+
+[lib]
+name = "aitrans_lib"
+crate-type = ["rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+serde_json = "1"
+
+[dependencies]
+tauri = { version = "2", features = ["macos-private-api"] }
+tauri-plugin-opener = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# Audio capture
+cpal = "0.15"
+
+# Core Audio HAL Tap — ObjC interop for CATapDescription (macOS 14.2+)
+core-foundation = "0.10"
+
+# Streaming / SSE parsing
+futures = "0.3"
+tokio-stream = "0.1"
+
+# Async trait
+async-trait = "0.1"
+
+# Logging
+log = "0.4"
+env_logger = "0.11"
+
+# Unique IDs
+uuid = { version = "1", features = ["v4"] }
+
+# Directories for config storage
+dirs = "6"
+
+# Base64 encoding for audio data
+base64 = "0.22"
+
+# Byte handling
+bytes = "1"
+
+# Process check (kill(pid, 0))
+libc = "0.2"
+
+# WebSocket client for Gummy real-time translation
+tokio-tungstenite = { version = "0.24", features = ["native-tls"] }
+url = "2"
+
+# HTTP client for DashScope REST API (hotword management)
+reqwest = { version = "0.12", features = ["json"] }
+
+[profile.release]
+strip = true
+lto = true
+opt-level = "s"
+codegen-units = 1
+panic = "abort"
