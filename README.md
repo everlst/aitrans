@@ -86,7 +86,7 @@ aitrans/
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/everlasting/aitrans.git
+git clone https://github.com/everlst/aitrans.git
 cd aitrans
 ```
 
@@ -112,10 +112,15 @@ npm run tauri dev
 npm run tauri build
 ```
 
-构建产物位于 `src-tauri/target/release/bundle/`，包含：
+默认构建产物位于 `src-tauri/target/release/bundle/`，包含：
 
-- `dmg/` — macOS 安装镜像 (.dmg)
 - `macos/` — 应用包 (.app)
+
+如需生成 macOS 安装镜像 (.dmg)，请显式运行：
+
+```bash
+npm run tauri -- build --bundles dmg
+```
 
 > **注意**：macOS 构建需要代码签名。开发阶段可使用 `src-tauri/dev-codesign.sh` 进行临时签名，或在系统设置中允许运行未签名应用。
 
